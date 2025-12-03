@@ -1,5 +1,6 @@
 'use client';
 
+import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 const errorMessages: Record<string, string> = {
@@ -10,7 +11,7 @@ const errorMessages: Record<string, string> = {
   unknown_error: "Something went wrong. Please try again.",
 };
 
-export default function AuthErrorPage() {
+function AuthErrorContent() {
   const searchParams = useSearchParams();
   const errorReason = searchParams.get('reason');
   const message = errorReason ? (errorMessages[errorReason] || errorMessages.unknown_error) : errorMessages.unknown_error;
@@ -36,5 +37,13 @@ export default function AuthErrorPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function AuthErrorPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <AuthErrorContent />
+    </Suspense>
   );
 }

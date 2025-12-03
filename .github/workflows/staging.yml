@@ -17,18 +17,21 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "18"
-          cache: "npm"
-          cache-dependency-path: client/web/package-lock.json
+          cache: "pnpm"
+          cache-dependency-path: client/web/pnpm-lock.yaml
+
+      - name: Install pnpm
+        run: npm install -g pnpm
 
       - name: Install dependencies
         run: |
           cd client/web
-          npm ci
+          pnpm install --frozen-lockfile
 
       - name: Build client
         run: |
           cd client/web
-          npm run build
+          pnpm run build
         env:
           REACT_APP_API_URL: ${{ secrets.STAGING_API_URL }}
 
@@ -73,12 +76,15 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "18"
+          cache: "pnpm"
+
+      - name: Install pnpm
+        run: npm install -g pnpm
 
       - name: Run integration tests
         run: |
-          # Add your integration test commands here
           echo "Running integration tests against staging..."
-          # npm run test:integration
+          # pnpm run test:integration
         env:
           STAGING_API_URL: ${{ secrets.STAGING_API_URL }}
           STAGING_WEB_URL: ${{ secrets.STAGING_WEB_URL }}
