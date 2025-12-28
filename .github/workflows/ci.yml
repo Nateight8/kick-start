@@ -67,8 +67,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "18"
-          cache: "pnpm"
-          cache-dependency-path: server/pnpm-lock.yaml
+          cache: pnpm
+          cache-dependency-path: '**/pnpm-lock.yaml'
 
       # Install dependencies
       - name: Install server dependencies
@@ -105,8 +105,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "18"
-          cache: "pnpm"
-          cache-dependency-path: client/web/pnpm-lock.yaml
+          cache: pnpm
+          cache-dependency-path: '**/pnpm-lock.yaml'
 
       # Install dependencies
       - name: Install client dependencies
