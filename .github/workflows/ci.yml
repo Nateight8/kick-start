@@ -63,12 +63,12 @@ jobs:
         with:
           version: 9.14.3
 
-      # Then setup Node
+      # Then setup Node with pnpm cache
       - uses: actions/setup-node@v4
         with:
           node-version: "18"
           cache: "pnpm"
-          cache-dependency-path: server/pnpm-lock.yaml
+          cache-dependency-path: "server/pnpm-lock.yaml"
 
       # Install dependencies
       - name: Install server dependencies
@@ -101,12 +101,12 @@ jobs:
         with:
           version: 9.14.3
 
-      # Then setup Node
+      # Then setup Node with pnpm cache
       - uses: actions/setup-node@v4
         with:
           node-version: "18"
           cache: "pnpm"
-          cache-dependency-path: client/web/pnpm-lock.yaml
+          cache-dependency-path: "client/web/pnpm-lock.yaml"
 
       # Install dependencies
       - name: Install client dependencies

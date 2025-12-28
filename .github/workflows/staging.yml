@@ -13,15 +13,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Setup pnpm with matching version
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9.14.3
+
+      # Then setup Node with pnpm cache
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "18"
           cache: "pnpm"
-          cache-dependency-path: client/web/pnpm-lock.yaml
-
-      - name: Install pnpm
-        run: npm install -g pnpm
+          cache-dependency-path: "client/web/pnpm-lock.yaml"
 
       - name: Install dependencies
         run: |
@@ -72,14 +75,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Setup pnpm with matching version
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9.14.3
+
+      # Then setup Node
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "18"
-          cache: "pnpm"
-
-      - name: Install pnpm
-        run: npm install -g pnpm
 
       - name: Run integration tests
         run: |
